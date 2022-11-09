@@ -1,23 +1,57 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import HomeView from "../views/HomeView.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
-    name: "home",
-    component: HomeView,
+    path: "/demo",
+    name: "demo",
+    component: () => import("../views/demo"),
   },
   {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+    path: "/articleCreate",
+    name: "articleCreate",
+    component: () => import("../views/articleCreate"),
+  },
+  {
+    path: "/articleEdit/:aid",
+    props: true,
+    name: "articleEdit",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+      import(
+        /* webpackChunkName: "articleCreate" */ "../views/articleCreate.vue"
+      ),
+  },
+  {
+    path: "/userinfo",
+    name: "userinfo",
+    component: () =>
+      import(/* webpackChunkName: "userinfo" */ "../views/userinfo.vue"),
+  },
+  {
+    path: "/articleLists",
+    name: "articleLists",
+    component: () => import("../views/articleLists"),
+  },
+  {
+    path: "/articles/:id",
+    props: true,
+    component: () =>
+      import(
+        /* webpackChunkName: "articleSingle" */ "../views/articleSingle.vue"
+      ),
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: () => import("@/components/login"),
+  },
+  {
+    path: "/signup",
+    name: "signup",
+
+    component: () => import("../views/signup"),
   },
 ];
 
